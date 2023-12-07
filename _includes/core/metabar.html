@@ -1,0 +1,16 @@
+<aside id="metabar" class="metabar{% if include.color %} {{ include.color }}{% endif %}">
+	<div class="metabar-wrapper">
+		<div class="metabar-left">
+			<a class="metabar-logo logoStyle" href="/">
+				{% include custom/logo.html %}
+			</a>
+		</div>
+		<div class="metabar-right">
+			<button id="js-navOpen" class="nav-open">Menu</button>
+			<nav id="js-metabarNav" class="metabar-nav">
+				<button id="js-navClose" class="nav-close">Close</button>
+				{% include core/navigation.html %}
+			</nav>
+		</div>
+	</div>
+</aside>

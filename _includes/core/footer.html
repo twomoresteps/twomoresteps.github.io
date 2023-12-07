@@ -1,0 +1,23 @@
+<footer class="footer">
+	<div class="footer-container">
+		<div class="footer-logo logoStyle">
+			<a href="/">
+				{% include custom/logo.html %}
+			</a>
+		</div>
+		<div class="footer-navigation">
+			<div class="footer-links">
+				<h4 class="footer-title">{{ site.title }}</h4>
+				<nav>
+					{% include core/navigation.html %}
+				</nav>
+			</div>
+			<div class="footer-links">
+				<h4 class="footer-title">联系我们</h4>
+				<p>(123)-456-7890</p>
+				<p>contact@email.com</p>
+			</div>
+		</div>
+		<h6 class="footer-text">© {{ site.time | date: '%Y' }} <a href="https://twitter.com/{{ site.author.twitter }}" aria-label="Follow {{ site.author.name }} on Twitter.">{{ site.author.name }}</a>. All rights reserved.</h6>
+	</div>
+</footer>

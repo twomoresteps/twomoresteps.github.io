@@ -18,19 +18,62 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+# Site meta
+assets: /assets
+images: /images
+image: index-large.jpg
+logo: /assets/icons/apple-icon-144x144.png
+dark_theme: false
+title: Two More Steps
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Twomoresteps  academy秉承“用户第一，严选好老师，始终坚持优质的教学及咨询服务”的发展战略，立足美国，深耕美加澳新及欧洲，辐射全球，我们致力于主要服务全球华裔，为用户提供优质的教育服务及咨询服务，满足用户多元化的学习需求和咨询需求，助力学员自 信健康成长，助力用户实现奋斗目标，实现升学、移民、求职等梦想的同时，成为有用且受人尊敬的人。
 domain: twomoresteps.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://twomoresteps.github.io  # the base hostname and protocol for your site, e.g. http://example.com
 
 # Build settings
-theme: minima
-plugins:
+# Dependencies
+markdown: kramdown
+highlighter: rouge
+
+# Gems
+gems:
   - jekyll-feed
+  - jekyll-gist
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+
+# Settings
+exclude:
+  [
+    CNAME,
+    README.md,
+    LICENSE.md,
+    .gitignore,
+    package.json,
+    yarn.lock,
+    _js,
+    _scss,
+    _images,
+    gulpfile.js,
+    gulpconfig.js,
+    node_modules,
+    gemfile,
+    Gemfile.lock,
+    lint-staged.config.js,
+    prettier.config.js,
+  ]
+permalink: /:title/
+compress_html:
+  clippings: all
+  comments: all
+
+google_fonts:
+  Overpass: 400, 600, 800
+
+# Content
+excerpt_separator: <!-- Read more -->
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
