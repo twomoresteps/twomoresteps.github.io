@@ -1,7 +1,7 @@
 <footer class="footer">
 	<div class="footer-container">
 		<div class="footer-logo logoStyle">
-			<a href="/">
+			<a href="{{ site.data.nav[page.locale].nav.URL }}">
 				{% include custom/logo.html %}
 			</a>
 		</div>
@@ -13,12 +13,12 @@
 				</nav>
 			</div>
 			<div class="footer-links">
-				<h4 class="footer-title">联系我们</h4>
+				<h4 class="footer-title">{{ site.data.footer[page.locale].footer.contact }}</h4>
 				<p>+1 (949) 889-5111</p>
 				<p>+1 (949) 565-3085</p>
 				<p>tmstepsconsulting@gmail.com</p>
 			</div>
 		</div>
-		<h6 class="footer-text">© {{ site.time | date: '%Y' }} <a href="https://twitter.com/{{ site.author.twitter }}" aria-label="Follow {{ site.author.name }} on Twitter.">{{ site.author.name }}</a>. All rights reserved.</h6>
+		<h6 class="footer-text">© {{ site.time | date: '%Y' }} <a href="https://twitter.com/{{ site.author.twitter }}" aria-label="Follow {{ site.author.name }} on Twitter.">{{ site.author.name }}</a>. {{ site.data.footer[page.locale].footer.rights }}</h6>
 	</div>
 </footer>

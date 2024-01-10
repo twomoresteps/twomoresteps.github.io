@@ -1,7 +1,7 @@
 <aside id="metabar" class="metabar{% if include.color %} {{ include.color }}{% endif %}">
 	<div class="metabar-wrapper">
 		<div class="metabar-left">
-			<a class="metabar-logo logoStyle" href="/">
+			<a class="metabar-logo logoStyle" href="{{ site.data.nav[page.locale].nav.URL }}">
 				{% include custom/logo.html %}
 			</a>
 		</div>

@@ -1,5 +1,5 @@
 <ul class="nav d-flex flex-column flex-lg-row">
-{% assign entries = site.pages | where: "lang", page.lang | sort: "order" %}
+{% assign entries = site.pages | where: "locale", page.locale | sort: "order" %}
 {% for entry in entries %}
 	{% unless entry.exclude == true %}
     <li class="nav-link">
@@ -12,4 +12,18 @@
     <a href="{{ entry[1] }}" aria-label="{{ entry[0] }}">{{ entry[0] }}</a>
   </li>
 {% endfor %}
+  <li class="text-uppercase">
+    <a class="nav-link" role="button"  
+    href="
+    {% if page.name == "index.html" %}
+      {{ site.data.nav[page.locale].nav.switchLangURL }}{{page.name | replace:'index.html','' }}
+    {% elsif page.collection.size %}
+      {{ site.data.nav[page.locale].nav.switchLangURL }}{{page.collection}}/{{page.slug}}
+    {% else %}
+      {{ site.data.nav[page.locale].nav.switchLangURL }}{{page.name | replace:'.html','' }}
+    {% endif %}
+    ">  
+    {{ site.data.nav[page.locale].nav.switchLang }}
+    </a>
+  </li>
 </ul>

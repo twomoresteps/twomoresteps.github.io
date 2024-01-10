@@ -3,8 +3,9 @@ layout: compress
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	{% include core/head.html %}
+	{% include core/metabar.html %}
 
 	<body class="{% if page.font %}{{ page.font }}{% else %}{{ layout.font }}{% endif %}">
 
@@ -12,7 +13,20 @@ layout: compress
 			{{ content }}
 		</div>
 
+		{% include core/footer.html %}
 		{% include core/scripts.html %}
+		<script>
+			var usrlang = navigator.language || navigator.userLanguage;                                   
+		  
+			var lang = usrlang.toString().split('-')[0];                                                  
+			console.log("User's preferred language is: " + lang);
+		  
+			if (window.location.href.indexOf("cn") == -1 && lang == "zh" && !sessionStorage.alreadyClicked) 
+			{
+			  sessionStorage.alreadyClicked = 1;                                                            
+			  window.location.replace("/cn" + window.location.pathname)                                    
+			}
+		  </script>
 	</body>
 
 </html>
