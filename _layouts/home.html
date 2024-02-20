@@ -20,7 +20,7 @@ layout: default
       </div>
     </div>
 
-    <div class="row align-items-md-stretch">
+    <div class="row align-items-md-stretch mb-4">
       <div class="col-md-6">
         <div class="h-100 p-5 text-white bg-dark rounded-3 d-flex flex-column">
           <h2>{{ site.data.home[page.locale].home.step }}</h2>
@@ -43,5 +43,36 @@ layout: default
       </div>
     </div>
 
+    <div class="h-100 bg-light border rounded-3 d-flex flex-column">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/assets/images/promotional/promotional1.jpg" class="d-block w-100 rounded-3" alt="promotional1">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/images/promotional/promotional2.jpg" class="d-block w-100 rounded-3" alt="promotional2">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/images/promotional/promotional3.jpg" class="d-block w-100 rounded-3" alt="promotional3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+  
+    </div>
+
   </div>
 </main>
+
