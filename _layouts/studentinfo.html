@@ -1,0 +1,171 @@
+---
+layout: default
+---
+<div class="container mt-5 p-5 bg-light border rounded-3 ">
+    <h1 class="hero-title">{{ site.data.studentinfo[page.locale].formPage.title }}</h1>
+    <p>{{ site.data.studentinfo[page.locale].formPage.description }}</p>
+
+    <form>
+        <div class="form-group">
+            <label class="mb-2" for="firstName"><strong class="text-primary">1*</strong> {{ site.data.studentinfo[page.locale].formPage.firstName.label }}</label>
+            <input type="text" class="form-control" id="firstName"
+                placeholder="{{ site.data.studentinfo[page.locale].formPage.firstName.placeholder }}">
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="lastName"><strong class="text-primary">2*</strong> {{ site.data.studentinfo[page.locale].formPage.lastName.label }}</label>
+            <input type="text" class="form-control" id="lastName"
+                placeholder="{{ site.data.studentinfo[page.locale].formPage.lastName.placeholder }}">
+        </div>
+
+        <div class="form-group">
+            <label><strong class="text-primary">3*</strong> {{ site.data.studentinfo[page.locale].formPage.gender.label }}</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                <label class="form-check-label" for="male">{{ site.data.studentinfo[page.locale].formPage.gender.male }}</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">{{ site.data.studentinfo[page.locale].formPage.gender.female }}</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="birthday"><strong class="text-primary">4*</strong> {{ site.data.studentinfo[page.locale].formPage.birthday.label }}</label>
+            <input type="date" class="form-control" id="birthday">
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="grade"><strong class="text-primary">5*</strong> {{ site.data.studentinfo[page.locale].formPage.grade.label }}</label>
+            <input type="text" class="form-control" id="grade">
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="email"><strong class="text-primary">6*</strong> {{ site.data.studentinfo[page.locale].formPage.email.label }}</label>
+            <input type="email" class="form-control" id="email">
+            <small class="form-text text-muted">{{ site.data.studentinfo[page.locale].formPage.email.help }}</small>
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="phone"><strong class="text-primary">7*</strong> {{ site.data.studentinfo[page.locale].formPage.phone.label }}</label>
+            <input type="tel" class="form-control" id="phone">
+            <small class="form-text text-muted">{{ site.data.studentinfo[page.locale].formPage.phone.help }}</small>
+        </div>
+
+        <div class="form-group">
+            <label class="mb-2" for="timezone"><strong class="text-primary">8*</strong> {{ site.data.studentinfo[page.locale].formPage.timezone.label }}</label>
+            <select class="form-control" id="timezone">
+                {% for option in site.data.studentinfo[page.locale].formPage.timezone.options %}
+                <option>{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        {% assign days = site.data.studentinfo[page.locale].formPage.availableTime.days %}
+        {% assign start_hour = 8 %}
+        {% assign end_hour = 21 %}
+        
+        {% for day in days %}
+        
+        <div class="form-group">
+            <label><strong class="text-primary">{{ forloop.index | plus: 8 }}* </strong> <strong class="text-primary">{{ day }} </strong>{{ site.data.studentinfo[page.locale].formPage.availableTime.label }}</label><br>
+            <p>{{ site.data.studentinfo[page.locale].formPage.availableTime.help }}</p>
+            {% for hour in (start_hour..end_hour) %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ hour }}:00-{{ hour | plus: 1 }}:00"
+                    id="{{ day | downcase }}-{{ hour }}">
+                <label class="form-check-label" for="{{ day | downcase }}-{{ hour }}">{{ hour }}:00-{{ hour | plus: 1
+                    }}:00</label>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">{{ site.data.studentinfo[page.locale].formPage.submit }}</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    /* Get the form element */
+    const form = document.querySelector('form');
+
+    /* Define the base URL and account details */
+    const baseUrl = "https://backend4.sharemyworks.com/api/";
+    const urlParams = new URLSearchParams(window.location.search);
+    const accountId = urlParams.get('accountId');
+    const token = urlParams.get('token');
+
+    console.log('Account ID:', accountId);
+    console.log('Token:', token);
+
+    /* Fetch account information */
+    fetch(`${baseUrl}Account/${accountId}?access_token=${token}`)
+        .then(response => response.json())
+        .then(account => {
+            form.querySelector('#firstName').value = account.firstName;
+            form.querySelector('#lastName').value = account.lastName;
+        })
+        .catch(error => {
+            console.error('Cannot get account information:', error);
+            alert('Cannot get account information!');
+        });
+
+    /* Handle form submission: This code is just a layout and needs to be modified to fit the actual form data*/
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!accountId || !token) {
+            alert("No accountId or token found!");
+            return;
+        }
+
+        /* Prepare form data for submission */
+        const availableTime = formData.availableTime.map((day) => {
+            return day
+                .filter((timeSection) => timeSection.valid)
+                .map((timeSection) => timeSection.time);
+        });
+
+        const data = {
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            availableTime: JSON.stringify(availableTime),
+            // Add other form fields as needed (Check the SMW backend for the required fields at the endpoint)
+        };
+
+        try {
+            /* Send PATCH request to update account information */
+            await fetch(`${baseUrl}Account/${accountId}?access_token=${token}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            /* Send POST request to notify student info update */
+            await fetch(`${baseUrl}Account/notifyStudentInfoUpdate?access_token=${token}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: "contact@codingmindsacademy.com",
+                    content:
+                        "A student has updated his/her information:\n" +
+                        `First Name: ${data.firstName}\n` +
+                        `Last Name: ${data.lastName}\n` +
+                        `Available Time \n` +
+                        formatAvailableTime(availableTime),
+                })
+            });
+
+            alert("Successfully updated information!");
+        } catch (error) {
+            console.error('Error updating information:', error);
+            alert('Error updating information. Please try again.');
+        }
+    });
+});
+</script>

@@ -1,0 +1,49 @@
+formPage:
+  title: Update Your Information
+  description: Timely updating of information will help us speed up class scheduling and enhance communication between home and school. It can also help us provide you with timely feedback on your child's learning and homework.
+  firstName: 
+    label: First Name
+    placeholder: Please keep the same as your name in class
+  lastName:
+    label: Last Name
+    placeholder: Please keep the same as your last name in class
+  gender:
+    label: Please Select Gender
+    male: Male
+    female: Female
+  birthday:
+    label: Student Birth date
+  grade:
+    label: Student Grade
+  email:
+    label: Parent's Email Address
+    help: ~ is used to confirm courses and provide feedback reports
+  phone:
+    label: Parent's Mobile Phone
+    help: ~ are used for text message reminders and emergency notifications rather than telemarketing.
+  timezone:
+    label: Please Select Time Zone
+    options:
+      - UTC-7 West America (Los Angeles, Vancouver, etc.)
+      - UTC-6 Meishan (Salt Lake City, Denver, etc.)
+      - UTC-5 US-China (Chicago, etc.)
+      - UTC-4 East America (New York, Toronto, etc.)
+      - UTC+7 Vietnam
+      - UTC+8 China
+      - UTC+11 Australia
+      - UTC+1 Western Europe (London, etc.)
+      - UTC+2 Central Europe (Paris, Berlin, Rome, etc.)
+      - UTC+3 Eastern Europe (Kiev, Moscow, etc.)
+      - Other countries
+  availableTime:
+    label: All the available class time schedules
+    help: Please select as many times as possible
+    days:
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+      - Sunday
+  submit: Submit

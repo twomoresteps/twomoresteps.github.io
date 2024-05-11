@@ -1,0 +1,50 @@
+formPage:
+  title:  更新信息 
+  description:  及时更新信息有利于我们加快排课速度，增进家校沟通。也能帮助我们及时您反馈孩子的学习，作业情况。 
+  firstName:
+    label: 名字 FirstName
+    placeholder:  请与上课时姓名保持相同 
+  lastName:
+    label: 姓氏 LastName
+    placeholder: 请与上课时姓名保持相同
+  gender:
+    label: 请选择性别 Gender
+    male: 男
+    female: 女
+  birthday:
+    label: 学生生日 Birthday
+  grade:
+    label: 学生年级 Grade
+  email:
+    label: 家长电子邮箱 Email
+    help: ~  用于确认课程以及提供反馈报告 
+  phone:
+    label: 家长手机 Phone
+    help: ~  用于短信提醒和紧急情况通知 而非电话营销 
+  timezone:
+    label: 请选择时区 TimeZone
+    options:
+      - UTC-7 美西（洛杉矶 温哥华等)
+      - UTC-6 美山（盐湖城 丹佛等)
+      - UTC-5 美中（芝加哥等)
+      - UTC-4 美东（纽约多伦多等)
+      - UTC+7 越南
+      - UTC+8 中国
+      - UTC+11 澳大利亚
+      - UTC+1 西欧（伦敦等)
+      - UTC+2 中欧（巴黎 柏林 罗马等)
+      - UTC+3 东欧（基辅 莫斯科等)
+      - 其他国家
+  availableTime:
+    label: 以便我们能够加快排课速度。适用于所有可用的课程时间表
+    help: 请尽可能多地选择时间
+    days:
+      - 星期一
+      - 星期二
+      - 星期三
+      - 星期四
+      - 星期五
+      - 星期六
+      - 星期日
+  
+  submit: 提交
