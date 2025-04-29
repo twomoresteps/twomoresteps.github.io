@@ -8,9 +8,12 @@ layout: default
     <div class="h-100 bg-light border rounded-3 d-flex flex-column mb-4">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -23,55 +26,60 @@ layout: default
             <img src="/assets/images/promotional/promotional3.jpg" class="d-block w-100 rounded-3" alt="promotional3">
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-  
+
     </div>
 
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid pt-3">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-6 order-2">
-            <h1 class=" fw-bold">{{ site.data.home[page.locale].home.aboutUs }}</h1>
-            <p >{{ site.data.home[page.locale].home.aboutDesc }}</p>
-            <a href="/about-us"class="btn btn-primary" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>    
-          </div>
-          <div class="col-md-5 order-1 order-md-2">
-            <img class="img-fluid" src="/assets/images/school-flatline.png" alt="learning"/> 
+    <!-- Unified Content Section with all three elements -->
+    <div class="row align-items-md-stretch mb-4">
+      <!-- About Us Section -->
+      <div class="col-md-4">
+        <div class="h-100 p-4 bg-light rounded-3 d-flex flex-column">
+          <h2 class="fw-bold">{{ site.data.home[page.locale].home.aboutUs }}</h2>
+          <img class="img-fluid mb-3" src="/assets/images/school-flatline.png" alt="learning" />
+          <div class="mt-auto">
+            <p>{{ site.data.home[page.locale].home.aboutDesc }}</p>
+            <a href="/about-us" class="btn btn-primary" type="button">{{ site.data.home[page.locale].home.learnMore
+              }}</a>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="h-100 p-5 text-white bg-dark rounded-3 d-flex flex-column">
+      <!-- Step Section -->
+      <div class="col-md-4">
+        <div class="h-100 p-4 text-white bg-dark rounded-3 d-flex flex-column">
           <h2>{{ site.data.home[page.locale].home.step }}</h2>
-          <img class="img-fluid" src="/assets/images/online-lesson-flatline.png" alt="learning"/> 
+          <img class="img-fluid mb-3" src="/assets/images/online-lesson-flatline.png" alt="learning" />
           <div class="mt-auto">
             <p>{{ site.data.home[page.locale].home.stepDesc }}</p>
-            <a href="/step" class="btn btn-outline-light" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>
+            <a href="/step" class="btn btn-outline-light" type="button">{{ site.data.home[page.locale].home.learnMore
+              }}</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3 d-flex flex-column">
+
+      <!-- Saxon Section -->
+      <div class="col-md-4">
+        <div class="h-100 p-4 bg-light border rounded-3 d-flex flex-column">
           <h2>{{ site.data.home[page.locale].home.saxon }}</h2>
-          <img class="img-fluid" src="/assets/images/teacher-flatline.png" alt="learning"/> 
+          <img class="img-fluid mb-3" src="/assets/images/teacher-flatline.png" alt="learning" />
           <div class="mt-auto">
             <p>{{ site.data.home[page.locale].home.saxonDesc }}</p>
-            <a href="/saxon" class="btn btn-outline-secondary" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>
+            <a href="/saxon" class="btn btn-outline-secondary" type="button">{{
+              site.data.home[page.locale].home.learnMore }}</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </main>
-

@@ -20,6 +20,9 @@ yarn
 ```
 
 Then simply run `yarn start` to start the Jekyll server on port `4000`.
+Alternative:
+`bundle exec jekyll serve`
+
 
 ## Options
 
