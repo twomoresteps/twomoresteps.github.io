@@ -8,8 +8,23 @@
 		<div class="footer-navigation">
 			<div class="footer-links">
 				<h4 class="footer-title">{{ site.title }}</h4>
-				<nav>
-					{% include core/navigation.html %}
+				<nav class="text-left mt-0 ps-0">
+					<!-- Standalone navigation code for footer with proper left alignment -->
+					<ul class="nav d-flex flex-column mt-0 pt-0 ps-0">
+						{% assign entries = site.pages | where: "locale", page.locale | sort: "order" %}
+						{% for entry in entries %}
+							{% unless entry.exclude == true %}
+							<li class="nav-link text-start py-1 mt-0 ps-0">
+								<a class="{% if page.url == entry.url %} nav-active{% endif %} ps-0" href="{{ site.baseurl }}{{ entry.url }}" aria-label="{{ entry.title }}">{{ entry.title }}</a>
+							</li>
+							{% endunless %}
+						{% endfor %}
+						{% for entry in site.navigation %}
+							<li class="nav-link text-start py-1 ps-0">
+								<a href="{{ entry[1] }}" class="ps-0" aria-label="{{ entry[0] }}">{{ entry[0] }}</a>
+							</li>
+						{% endfor %}
+					</ul>
 				</nav>
 			</div>
 			<div class="footer-links">
