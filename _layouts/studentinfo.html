@@ -103,8 +103,13 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(`${baseUrl}Account/${accountId}?access_token=${token}`)
         .then(response => response.json())
         .then(account => {
-            form.querySelector('#firstName').value = account.firstName;
-            form.querySelector('#lastName').value = account.lastName;
+            /* Avoid trying to access account.firstName when account is null or undefined */
+            if (account && account.firstName) {
+                form.querySelector('#firstName').value = account.firstName;
+            }
+            if (account && account.lastName) {
+                form.querySelector('#lastName').value = account.lastName;
+            }   
         })
         .catch(error => {
             console.error('Cannot get account information:', error);
