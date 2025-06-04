@@ -1,0 +1,166 @@
+---
+layout: default
+font: sans
+---
+
+<article class="content page">
+  <header class="hero">
+    <h1 class="hero-title">{{ site.data.free-trial[page.locale].freetrial.header }}</h1>
+  </header>
+
+  <div class="content-style d-flex flex-column align-items-center"
+    style="padding-top: 0 !important; padding-bottom: 2rem !important;">
+
+    <!-- Form Subtitle -->
+    <div style="max-width: 700px; text-align: center; margin-top: -1.5rem; margin-bottom: 0.5rem;">
+      <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 0;">{{
+        site.data.free-trial[page.locale].freetrial.applicationTitle }}</h2>
+    </div>
+
+    <!-- Form Introduction -->
+    <div style="max-width: 700px; text-align: center; margin-bottom: 3rem;">
+      <p>{{ site.data.free-trial[page.locale].freetrial.lead }}</p>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="d-flex justify-content-center mb-4">
+      <div id="formSpinner" class="spinner-border" role="status"
+        style="width: 3rem; height: 3rem; display: none; color: #0d71d5;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div style="max-width: 700px; width: 100%;">
+      <form id="form" class="contact-form needs-validation" novalidate action="javascript:void(0)">
+        <div class="messages"></div>
+
+        <div class="form-floating mb-4">
+          <input id="studentName" type="text" name="studentName" class="form-control" placeholder="Jane"
+            required="required" data-error="Name is required.">
+          <label for="studentName">{{ site.data.free-trial[page.locale].freetrial.nameTag }}</label>
+          <div class="valid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+          </div>
+          <div class="invalid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.errorName }}
+          </div>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input id="studentGrade" type="text" name="studentGrade" class="form-control" placeholder="Ex: 5th Grade"
+            required="required" data-error="Valid grade level is required.">
+          <label for="studentGrade">{{ site.data.free-trial[page.locale].freetrial.gradeTag }}</label>
+          <div class="valid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+          </div>
+          <div class="invalid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.errorGrade }}
+          </div>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input id="emailAddress" type="email" name="emailAddress" class="form-control"
+            placeholder="jane.doe@example.com" required="required" data-error="Valid email is required.">
+          <label for="emailAddress">{{ site.data.free-trial[page.locale].freetrial.parentEmailTag }}</label>
+          <div class="valid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+          </div>
+          <div class="invalid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.errorEmail }}
+          </div>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
+            placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
+          <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
+          <div class="valid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+          </div>
+          <div class="invalid-feedback">
+            {{ site.data.free-trial[page.locale].freetrial.errorPhone }}
+          </div>
+        </div>
+
+        <div class="form-select-wrapper mb-4">
+          <select class="form-select" aria-label="Default select example" required="required" id="experience"
+            name="experience">
+            <option value="">{{ site.data.free-trial[page.locale].freetrial.codingExperienceTag }}</option>
+            <option id="1" value="Never Learned Before">{{ site.data.free-trial[page.locale].freetrial.experience1 }}
+            </option>
+            <option id="2" value="Very Basic Exposure">{{ site.data.free-trial[page.locale].freetrial.experience2 }}
+            </option>
+            <option id="3" value="Knows At Least One Programming Language Very Well">{{
+              site.data.free-trial[page.locale].freetrial.experience3 }}</option>
+            <option id="4" value="Hacker!">{{ site.data.free-trial[page.locale].freetrial.experience4 }}</option>
+          </select>
+        </div>
+
+        <div class="form-select-wrapper mb-4">
+          <select class="form-select" aria-label="Default select example" required="required" id="campus" name="campus">
+            <option value="">{{ site.data.free-trial[page.locale].freetrial.campusTag }}</option>
+            <option id="Irvine" value="Irvine">{{ site.data.free-trial[page.locale].freetrial.campus1 }}</option>
+            <option id="Diamond-bar" value="Diamond-bar">{{ site.data.free-trial[page.locale].freetrial.campus2 }}
+            </option>
+            <option id="Arcadia" value="Arcadia">{{ site.data.free-trial[page.locale].freetrial.campus3 }}</option>
+            <option id="West-lafayette" value="West-lafayette">{{ site.data.free-trial[page.locale].freetrial.campus4 }}
+            </option>
+            <option id="San-diego" value="San-diego">{{ site.data.free-trial[page.locale].freetrial.campus6 }}</option>
+            <option id="Redmond" value="Redmond">{{ site.data.free-trial[page.locale].freetrial.campus7 }}</option>
+            <option id="Bothell" value="Bothell">{{ site.data.free-trial[page.locale].freetrial.campus8 }}</option>
+            <option id="Factoria" value="Factoria">{{ site.data.free-trial[page.locale].freetrial.campus9 }}</option>
+            <option id="Online" value="Online">{{ site.data.free-trial[page.locale].freetrial.campus5 }}</option>
+          </select>
+        </div>
+
+        <div class="form-select-wrapper mb-4">
+          <select class="form-select" aria-label="Default select example" required="required" id="referral"
+            name="referral">
+            <option value="">{{ site.data.free-trial[page.locale].freetrial.sourceTag }}</option>
+            <option id="xiaohongshu" value="xiaohongshu">{{ site.data.free-trial[page.locale].freetrial.source1 }}
+            </option>
+            <option id="Instagram" value="Instagram">{{ site.data.free-trial[page.locale].freetrial.source2 }}</option>
+            <option id="Facebook" value="Facebook">{{ site.data.free-trial[page.locale].freetrial.source3 }}</option>
+            <option id="WeChat" value="WeChat">{{ site.data.free-trial[page.locale].freetrial.source4 }}</option>
+            <option id="Official Website" value="Official Website">{{
+              site.data.free-trial[page.locale].freetrial.source5 }}</option>
+            <option id="Friend" value="Friend">{{ site.data.free-trial[page.locale].freetrial.source6 }}</option>
+            <option id="Google" value="Google">{{ site.data.free-trial[page.locale].freetrial.source7 }}</option>
+            <option id="TikTok" value="TikTok">{{ site.data.free-trial[page.locale].freetrial.source8 }}</option>
+            <option id="Sales" value="Sales">{{ site.data.free-trial[page.locale].freetrial.source9 }}</option>
+            <option id="Others" value="Others">{{ site.data.free-trial[page.locale].freetrial.source10 }}</option>
+          </select>
+        </div>
+
+        <!-- Sales Details -->
+        <div id="salesDetails" class="form-floating mb-4" style="display: none;">
+          <input id="salesUsername" type="text" name="salesUsername" class="form-control" placeholder="Sales username">
+          <label for="salesUsername">Sales Name</label>
+        </div>
+
+        <!-- Other Details -->
+        <div id="otherDetails" class="form-floating mb-4" style="display: none;">
+          <input id="otherReferral" type="text" name="otherReferral" class="form-control" placeholder="Please specify">
+          <label for="otherReferral">Please specify</label>
+        </div>
+
+        <div class="form-floating mb-4">
+          <textarea id="availability" name="availability" class="form-control"
+            placeholder="{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}" style="height: 150px;"
+            required></textarea>
+          <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}</label>
+        </div>
+
+        <div class="text-center">
+          <button type="button" id="trialButton" class="button"> {{
+            site.data.free-trial[page.locale].freetrial.submit }} </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</article>
+
+<!-- Include External JavaScript -->
+<script src="{{ '/assets/free-trial-form.js' | relative_url }}"></script>
