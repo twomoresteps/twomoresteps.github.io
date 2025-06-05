@@ -65,11 +65,64 @@ const ORGANIZATION_MAPPING = {
     'Online': '5b2423bbc0991500145353f4'
 };
 
-// Display messages to user
-const showMessage = (message, type = 'success') => {
+// Show success page by switching sections
+const showSuccessPage = (message) => {
+    // Hide form section
+    const formSection = document.getElementById('formSection');
+    const successSection = document.getElementById('successSection');
+    
+    if (formSection && successSection) {
+        formSection.style.display = 'none';
+        successSection.style.display = 'block';
+        
+        // Update success message if provided
+        if (message) {
+            const successMessageElement = document.getElementById('successMessage');
+            if (successMessageElement) {
+                successMessageElement.textContent = message;
+            }
+        }
+        
+        // Add event listeners for buttons
+        setupSuccessPageButtons();
+        
+        // Scroll to top to show the success page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
+
+// Setup event listeners for success page buttons
+const setupSuccessPageButtons = () => {
+    const submitAnotherBtn = document.getElementById('submitAnotherBtn');
+    const goHomeBtn = document.getElementById('goHomeBtn');
+    
+    if (submitAnotherBtn) {
+        submitAnotherBtn.addEventListener('click', () => {
+            // Reload the page to show the form again
+            window.location.reload();
+        });
+    }
+    
+    if (goHomeBtn) {
+        goHomeBtn.addEventListener('click', () => {
+            // Navigate to homepage - adjust the URL as needed
+            window.location.href = '/';
+        });
+    }
+};
+
+// Display error messages
+const showMessage = (message, type = 'error') => {
     const messagesDiv = document.querySelector('.messages');
+    
     messagesDiv.innerHTML = `
-        <div class="alert alert-${type === 'success' ? 'success' : 'error'} alert-dismissible" role="alert">
+        <div class="alert alert-danger alert-dismissible text-center" role="alert" 
+             style="border: 2px solid #dc3545; 
+                    border-radius: 10px; 
+                    padding: 20px; 
+                    margin: 20px 0; 
+                    font-size: 1.1rem; 
+                    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);">
             ${message}
             <button type="button" class="btn-close" aria-label="Close">&times;</button>
         </div>
@@ -90,9 +143,18 @@ const showMessage = (message, type = 'success') => {
     setTimeout(() => {
         const alert = messagesDiv.querySelector('.alert');
         if (alert) {
-            alert.remove();
+            alert.style.transition = 'opacity 0.5s ease-out';
+            alert.style.opacity = '0';
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 500);
         }
     }, 5000);
+
+    // Scroll to the message to ensure it's visible
+    messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
 };
 
 // Create account function
@@ -266,7 +328,10 @@ const initializeFreeTrialForm = () => {
         spinner.style.display = 'inline-flex';
         submitButton.disabled = true;
         const originalText = submitButton.textContent;
-        submitButton.textContent = 'Submitting...';
+        
+        // Get localized submitting text from data attribute
+        const submittingText = form.dataset.submittingText || 'Submitting...';
+        submitButton.textContent = submittingText;
 
         // Validate form
         let isValid = true;
@@ -305,7 +370,8 @@ const initializeFreeTrialForm = () => {
             spinner.style.display = 'none';
             submitButton.disabled = false;
             submitButton.textContent = originalText;
-            showMessage('Please fill in all required fields correctly.', 'error');
+            const validationMessage = form.dataset.validationErrorMessage;
+            showMessage(validationMessage, 'error');
             return;
         }
 
@@ -326,15 +392,16 @@ const initializeFreeTrialForm = () => {
             const result = await submitFormData(formData);
 
             if (result.success) {
-                // Hide form and show success message
-                form.style.display = 'none';
-                showMessage('🎉 Thank you! Your free trial request has been submitted successfully. We will contact you soon!', 'success');
+                // Show success page using existing HTML
+                const successMessage = form.dataset.successMessage;
+                showSuccessPage(successMessage);
             } else {
                 throw new Error(result.error);
             }
         } catch (error) {
             console.error('Form submission failed:', error);
-            showMessage(error.message || 'Sorry, there was an error submitting your request. Please try again later.', 'error');
+            const errorMessage = form.dataset.errorMessage;
+            showMessage(error.message || errorMessage, 'error');
         } finally {
             // Reset loading state
             spinner.style.display = 'none';

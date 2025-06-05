@@ -11,141 +11,212 @@ font: sans
   <div class="content-style d-flex flex-column align-items-center"
     style="padding-top: 0 !important; padding-bottom: 2rem !important;">
 
-    <!-- Form Subtitle -->
-    <div style="max-width: 700px; text-align: center; margin-top: -1.5rem; margin-bottom: 0.5rem;">
-      <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 0;">{{
-        site.data.free-trial[page.locale].freetrial.applicationTitle }}</h2>
-    </div>
+    <!-- Form Section -->
+    <div id="formSection" style="width: 100%; display: block;">
+      <!-- Form Subtitle -->
+      <div style="max-width: 700px; text-align: center; margin: 0 auto; margin-top: -1.5rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 0;">{{
+          site.data.free-trial[page.locale].freetrial.applicationTitle }}</h2>
+      </div>
 
-    <!-- Form Introduction -->
-    <div style="max-width: 700px; text-align: center; margin-bottom: 3rem;">
-      <p>{{ site.data.free-trial[page.locale].freetrial.lead }}</p>
-    </div>
+      <!-- Form Introduction -->
+      <div style="max-width: 700px; text-align: center; margin: 0 auto; margin-bottom: 3rem;">
+        <p>{{ site.data.free-trial[page.locale].freetrial.lead }}</p>
+      </div>
 
-    <!-- Loading Spinner -->
-    <div class="d-flex justify-content-center mb-4">
-      <div id="formSpinner" class="spinner-border" role="status"
-        style="width: 3rem; height: 3rem; display: none; color: #0d71d5;">
-        <span class="visually-hidden">Loading...</span>
+      <!-- Loading Spinner -->
+      <div class="d-flex justify-content-center mb-4">
+        <div id="formSpinner" class="spinner-border" role="status"
+          style="width: 3rem; height: 3rem; display: none; color: #0d71d5;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div style="max-width: 700px; width: 100%; margin: 0 auto;">
+        <form id="form" class="contact-form needs-validation" novalidate action="javascript:void(0)"
+          data-success-message="{{ site.data.free-trial[page.locale].freetrial.successMessage }}"
+          data-error-message="{{ site.data.free-trial[page.locale].freetrial.errorMessage }}"
+          data-validation-error-message="{{ site.data.free-trial[page.locale].freetrial.validationError }}"
+          data-submitting-text="{{ site.data.free-trial[page.locale].freetrial.submitting }}">
+          <div class="messages"></div>
+
+          <div class="form-floating mb-4">
+            <input id="studentName" type="text" name="studentName" class="form-control" placeholder="Jane"
+              required="required" data-error="Name is required.">
+            <label for="studentName">{{ site.data.free-trial[page.locale].freetrial.nameTag }}</label>
+            <div class="valid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+            </div>
+            <div class="invalid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.errorName }}
+            </div>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input id="studentGrade" type="text" name="studentGrade" class="form-control" placeholder="Ex: 5th Grade"
+              required="required" data-error="Valid grade level is required.">
+            <label for="studentGrade">{{ site.data.free-trial[page.locale].freetrial.gradeTag }}</label>
+            <div class="valid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+            </div>
+            <div class="invalid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.errorGrade }}
+            </div>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input id="emailAddress" type="email" name="emailAddress" class="form-control"
+              placeholder="jane.doe@example.com" required="required" data-error="Valid email is required.">
+            <label for="emailAddress">{{ site.data.free-trial[page.locale].freetrial.parentEmailTag }}</label>
+            <div class="valid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+            </div>
+            <div class="invalid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.errorEmail }}
+            </div>
+          </div>
+
+          <div class="form-floating mb-4">
+            <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
+              placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
+            <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
+            <div class="valid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
+            </div>
+            <div class="invalid-feedback">
+              {{ site.data.free-trial[page.locale].freetrial.errorPhone }}
+            </div>
+          </div>
+
+          <div class="form-select-wrapper mb-4">
+            <select class="form-select" aria-label="Default select example" required="required" id="campus" name="campus">
+              <option value="">{{ site.data.free-trial[page.locale].freetrial.campusTag }}</option>
+              <option id="Irvine" value="Irvine">{{ site.data.free-trial[page.locale].freetrial.campus1 }}</option>
+              <option id="Online" value="Online">{{ site.data.free-trial[page.locale].freetrial.campus5 }}</option>
+            </select>
+          </div>
+
+          <div class="form-select-wrapper mb-4">
+            <select class="form-select" aria-label="Default select example" required="required" id="referral"
+              name="referral">
+              <option value="">{{ site.data.free-trial[page.locale].freetrial.sourceTag }}</option>
+              <option id="xiaohongshu" value="xiaohongshu">{{ site.data.free-trial[page.locale].freetrial.source1 }}
+              </option>
+              <option id="Instagram" value="Instagram">{{ site.data.free-trial[page.locale].freetrial.source2 }}</option>
+              <option id="Facebook" value="Facebook">{{ site.data.free-trial[page.locale].freetrial.source3 }}</option>
+              <option id="WeChat" value="WeChat">{{ site.data.free-trial[page.locale].freetrial.source4 }}</option>
+              <option id="Official Website" value="Official Website">{{
+                site.data.free-trial[page.locale].freetrial.source5 }}</option>
+              <option id="Friend" value="Friend">{{ site.data.free-trial[page.locale].freetrial.source6 }}</option>
+              <option id="Google" value="Google">{{ site.data.free-trial[page.locale].freetrial.source7 }}</option>
+              <option id="TikTok" value="TikTok">{{ site.data.free-trial[page.locale].freetrial.source8 }}</option>
+              <option id="Sales" value="Sales">{{ site.data.free-trial[page.locale].freetrial.source9 }}</option>
+              <option id="Others" value="Others">{{ site.data.free-trial[page.locale].freetrial.source10 }}</option>
+            </select>
+          </div>
+
+          <!-- Sales Details -->
+          <div id="salesDetails" class="form-floating mb-4" style="display: none;">
+            <input id="salesUsername" type="text" name="salesUsername" class="form-control" placeholder="Sales username">
+            <label for="salesUsername">Sales Name</label>
+          </div>
+
+          <!-- Other Details -->
+          <div id="otherDetails" class="form-floating mb-4" style="display: none;">
+            <input id="otherReferral" type="text" name="otherReferral" class="form-control" placeholder="Please specify">
+            <label for="otherReferral">Please specify</label>
+          </div>
+
+          <div class="form-floating mb-4">
+            <textarea id="availability" name="availability" class="form-control"
+              placeholder="{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}" style="height: 150px;"
+              required></textarea>
+            <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}</label>
+          </div>
+
+          <div class="text-center">
+            <button type="button" id="trialButton" class="btn btn-primary btn-lg px-5 py-3" style="background: linear-gradient(135deg, #0d71d5 0%, #1e88e5 100%); 
+                           border: none; 
+                           border-radius: 12px; 
+                           font-weight: 600; 
+                           font-size: 1.1rem; 
+                           letter-spacing: 0.5px; 
+                           box-shadow: 0 4px 15px rgba(13, 113, 213, 0.3); 
+                           transition: all 0.3s ease;
+                           min-width: 200px;"
+              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(13, 113, 213, 0.4)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(13, 113, 213, 0.3)'">
+              {{ site.data.free-trial[page.locale].freetrial.submit }}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- Registration Form -->
-    <div style="max-width: 700px; width: 100%;">
-      <form id="form" class="contact-form needs-validation" novalidate action="javascript:void(0)">
-        <div class="messages"></div>
+    <!-- Success Page Section (Initially Hidden) -->
+    <div id="successSection" style="max-width: 700px; width: 100%; display: none;">
+      <div class="success-page text-center" style="margin: 0 auto; padding: 3rem 1rem;">
 
-        <div class="form-floating mb-4">
-          <input id="studentName" type="text" name="studentName" class="form-control" placeholder="Jane"
-            required="required" data-error="Name is required.">
-          <label for="studentName">{{ site.data.free-trial[page.locale].freetrial.nameTag }}</label>
-          <div class="valid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
-          </div>
-          <div class="invalid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.errorName }}
-          </div>
+        <!-- Success Message -->
+        <div id="successMessage" style="background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%); 
+                    border: 2px solid #0d71d5; 
+                    border-radius: 0.5rem; 
+                    padding: 2rem; 
+                    margin-bottom: 3rem; 
+                    font-size: 1.1rem; 
+                    color: #2c3e50;
+                    font-family: 'Overpass', Arial, sans-serif;
+                    line-height: 1.6;
+                    box-shadow: 0 4px 15px rgba(13, 113, 213, 0.1);">
+          {{ site.data.free-trial[page.locale].freetrial.successMessage }}
         </div>
 
-        <div class="form-floating mb-4">
-          <input id="studentGrade" type="text" name="studentGrade" class="form-control" placeholder="Ex: 5th Grade"
-            required="required" data-error="Valid grade level is required.">
-          <label for="studentGrade">{{ site.data.free-trial[page.locale].freetrial.gradeTag }}</label>
-          <div class="valid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
-          </div>
-          <div class="invalid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.errorGrade }}
-          </div>
-        </div>
-
-        <div class="form-floating mb-4">
-          <input id="emailAddress" type="email" name="emailAddress" class="form-control"
-            placeholder="jane.doe@example.com" required="required" data-error="Valid email is required.">
-          <label for="emailAddress">{{ site.data.free-trial[page.locale].freetrial.parentEmailTag }}</label>
-          <div class="valid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
-          </div>
-          <div class="invalid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.errorEmail }}
-          </div>
-        </div>
-
-        <div class="form-floating mb-4">
-          <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
-            placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
-          <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
-          <div class="valid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
-          </div>
-          <div class="invalid-feedback">
-            {{ site.data.free-trial[page.locale].freetrial.errorPhone }}
-          </div>
-        </div>
-
-        <div class="form-select-wrapper mb-4">
-          <select class="form-select" aria-label="Default select example" required="required" id="campus" name="campus">
-            <option value="">{{ site.data.free-trial[page.locale].freetrial.campusTag }}</option>
-            <option id="Irvine" value="Irvine">{{ site.data.free-trial[page.locale].freetrial.campus1 }}</option>
-            <option id="Online" value="Online">{{ site.data.free-trial[page.locale].freetrial.campus5 }}</option>
-          </select>
-        </div>
-
-        <div class="form-select-wrapper mb-4">
-          <select class="form-select" aria-label="Default select example" required="required" id="referral"
-            name="referral">
-            <option value="">{{ site.data.free-trial[page.locale].freetrial.sourceTag }}</option>
-            <option id="xiaohongshu" value="xiaohongshu">{{ site.data.free-trial[page.locale].freetrial.source1 }}
-            </option>
-            <option id="Instagram" value="Instagram">{{ site.data.free-trial[page.locale].freetrial.source2 }}</option>
-            <option id="Facebook" value="Facebook">{{ site.data.free-trial[page.locale].freetrial.source3 }}</option>
-            <option id="WeChat" value="WeChat">{{ site.data.free-trial[page.locale].freetrial.source4 }}</option>
-            <option id="Official Website" value="Official Website">{{
-              site.data.free-trial[page.locale].freetrial.source5 }}</option>
-            <option id="Friend" value="Friend">{{ site.data.free-trial[page.locale].freetrial.source6 }}</option>
-            <option id="Google" value="Google">{{ site.data.free-trial[page.locale].freetrial.source7 }}</option>
-            <option id="TikTok" value="TikTok">{{ site.data.free-trial[page.locale].freetrial.source8 }}</option>
-            <option id="Sales" value="Sales">{{ site.data.free-trial[page.locale].freetrial.source9 }}</option>
-            <option id="Others" value="Others">{{ site.data.free-trial[page.locale].freetrial.source10 }}</option>
-          </select>
-        </div>
-
-        <!-- Sales Details -->
-        <div id="salesDetails" class="form-floating mb-4" style="display: none;">
-          <input id="salesUsername" type="text" name="salesUsername" class="form-control" placeholder="Sales username">
-          <label for="salesUsername">Sales Name</label>
-        </div>
-
-        <!-- Other Details -->
-        <div id="otherDetails" class="form-floating mb-4" style="display: none;">
-          <input id="otherReferral" type="text" name="otherReferral" class="form-control" placeholder="Please specify">
-          <label for="otherReferral">Please specify</label>
-        </div>
-
-        <div class="form-floating mb-4">
-          <textarea id="availability" name="availability" class="form-control"
-            placeholder="{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}" style="height: 150px;"
-            required></textarea>
-          <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}</label>
-        </div>
-
-        <div class="text-center">
-          <button type="button" id="trialButton" class="btn btn-primary btn-lg px-5 py-3" 
-                  style="background: linear-gradient(135deg, #0d71d5 0%, #1e88e5 100%); 
+        <!-- Action Buttons -->
+        <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+          <button type="button" id="submitAnotherBtn" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(135deg, #0d71d5 0%, #1e88e5 100%); 
                          border: none; 
-                         border-radius: 12px; 
+                         border-radius: 0.5rem; 
                          font-weight: 600; 
-                         font-size: 1.1rem; 
-                         letter-spacing: 0.5px; 
-                         box-shadow: 0 4px 15px rgba(13, 113, 213, 0.3); 
+                         font-size: 1rem; 
+                         font-family: 'Overpass', Arial, sans-serif;
+                         letter-spacing: 0.25px; 
+                         box-shadow: 0 2px 4px rgba(13, 113, 213, 0.33); 
                          transition: all 0.3s ease;
                          min-width: 200px;"
-                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(13, 113, 213, 0.4)'"
-                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(13, 113, 213, 0.3)'">
-            {{ site.data.free-trial[page.locale].freetrial.submit }}
+            onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 8px rgba(13, 113, 213, 0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(13, 113, 213, 0.33)'">
+            {{ site.data.free-trial[page.locale].freetrial.submitAnotherBtn }}
+          </button>
+
+          <button type="button" id="goHomeBtn" class="btn btn-outline-secondary btn-lg px-4 py-3" style="border: 2px solid #6c757d; 
+                         border-radius: 0.5rem; 
+                         font-weight: 600; 
+                         font-size: 1rem; 
+                         font-family: 'Overpass', Arial, sans-serif;
+                         letter-spacing: 0.25px; 
+                         transition: all 0.3s ease;
+                         min-width: 200px;" onmouseover="this.style.borderColor='#495057'; this.style.color='#495057'"
+            onmouseout="this.style.borderColor='#6c757d'; this.style.color='#6c757d'">
+            {{ site.data.free-trial[page.locale].freetrial.goHomeBtn }}
           </button>
         </div>
-      </form>
+
+        <!-- Additional Info -->
+        <div style="margin-top: 3rem; padding: 1.5rem; 
+                    background-color: #f8f9fa; 
+                    border-radius: 0.5rem; 
+                    border: 1px solid #e9ecef;
+                    color: #6c757d; 
+                    font-size: 1rem;
+                    font-family: 'Overpass', Arial, sans-serif;
+                    line-height: 1.6;">
+          <p style="margin: 0;">
+            <strong style="color: #495057;">{{ site.data.free-trial[page.locale].freetrial.nextStepsTitle }}</strong><br>
+            {{ site.data.free-trial[page.locale].freetrial.nextStepsDescription }}
+          </p>
+        </div>
+      </div>
     </div>
 
   </div>
