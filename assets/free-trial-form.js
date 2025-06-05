@@ -215,7 +215,6 @@ const submitFormData = async (formData) => {
         const organizationId = ORGANIZATION_MAPPING[formData.campus] || ORGANIZATION_MAPPING['Irvine'];
 
         const trialData = {
-            codingExperience: formData.experience,
             availability: formData.availability,
             comment: "",
             location: campusLocation,
@@ -316,7 +315,6 @@ const initializeFreeTrialForm = () => {
             grade: document.getElementById('studentGrade').value.trim(),
             email: document.getElementById('emailAddress').value.trim(),
             phone: document.getElementById('phoneNumber').value.trim(),
-            experience: document.getElementById('experience').value,
             campus: document.getElementById('campus').value,
             referral: document.getElementById('referral').value,
             availability: document.getElementById('availability').value.trim(),
