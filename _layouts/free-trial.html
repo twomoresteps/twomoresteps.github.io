@@ -84,32 +84,9 @@ font: sans
         </div>
 
         <div class="form-select-wrapper mb-4">
-          <select class="form-select" aria-label="Default select example" required="required" id="experience"
-            name="experience">
-            <option value="">{{ site.data.free-trial[page.locale].freetrial.codingExperienceTag }}</option>
-            <option id="1" value="Never Learned Before">{{ site.data.free-trial[page.locale].freetrial.experience1 }}
-            </option>
-            <option id="2" value="Very Basic Exposure">{{ site.data.free-trial[page.locale].freetrial.experience2 }}
-            </option>
-            <option id="3" value="Knows At Least One Programming Language Very Well">{{
-              site.data.free-trial[page.locale].freetrial.experience3 }}</option>
-            <option id="4" value="Hacker!">{{ site.data.free-trial[page.locale].freetrial.experience4 }}</option>
-          </select>
-        </div>
-
-        <div class="form-select-wrapper mb-4">
           <select class="form-select" aria-label="Default select example" required="required" id="campus" name="campus">
             <option value="">{{ site.data.free-trial[page.locale].freetrial.campusTag }}</option>
             <option id="Irvine" value="Irvine">{{ site.data.free-trial[page.locale].freetrial.campus1 }}</option>
-            <option id="Diamond-bar" value="Diamond-bar">{{ site.data.free-trial[page.locale].freetrial.campus2 }}
-            </option>
-            <option id="Arcadia" value="Arcadia">{{ site.data.free-trial[page.locale].freetrial.campus3 }}</option>
-            <option id="West-lafayette" value="West-lafayette">{{ site.data.free-trial[page.locale].freetrial.campus4 }}
-            </option>
-            <option id="San-diego" value="San-diego">{{ site.data.free-trial[page.locale].freetrial.campus6 }}</option>
-            <option id="Redmond" value="Redmond">{{ site.data.free-trial[page.locale].freetrial.campus7 }}</option>
-            <option id="Bothell" value="Bothell">{{ site.data.free-trial[page.locale].freetrial.campus8 }}</option>
-            <option id="Factoria" value="Factoria">{{ site.data.free-trial[page.locale].freetrial.campus9 }}</option>
             <option id="Online" value="Online">{{ site.data.free-trial[page.locale].freetrial.campus5 }}</option>
           </select>
         </div>
@@ -153,8 +130,20 @@ font: sans
         </div>
 
         <div class="text-center">
-          <button type="button" id="trialButton" class="button"> {{
-            site.data.free-trial[page.locale].freetrial.submit }} </button>
+          <button type="button" id="trialButton" class="btn btn-primary btn-lg px-5 py-3" 
+                  style="background: linear-gradient(135deg, #0d71d5 0%, #1e88e5 100%); 
+                         border: none; 
+                         border-radius: 12px; 
+                         font-weight: 600; 
+                         font-size: 1.1rem; 
+                         letter-spacing: 0.5px; 
+                         box-shadow: 0 4px 15px rgba(13, 113, 213, 0.3); 
+                         transition: all 0.3s ease;
+                         min-width: 200px;"
+                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(13, 113, 213, 0.4)'"
+                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(13, 113, 213, 0.3)'">
+            {{ site.data.free-trial[page.locale].freetrial.submit }}
+          </button>
         </div>
       </form>
     </div>
