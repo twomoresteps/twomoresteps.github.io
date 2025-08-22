@@ -135,6 +135,31 @@ font: sans
             <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}</label>
           </div>
 
+          <!-- SMS Opt-in Section -->
+          <div class="sms-optin-section mb-4" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 1.5rem;">
+            <h5 style="color: #495057; margin-bottom: 1rem; font-size: 1.1rem;">SMS Notifications</h5>
+            
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="smsConsent" name="smsConsent" required style="margin-top: 0.1rem;">
+              <label class="form-check-label" for="smsConsent" style="font-size: 0.95rem; line-height: 1.4; color: #495057;">
+                <strong>I consent to receive recurring SMS messages from Two More Steps. Message frequency may vary. Message & data rates may apply. Reply STOP to cancel, HELP for help.</strong>
+              </label>
+              <div class="invalid-feedback">
+                You must consent to receive SMS messages to proceed.
+              </div>
+            </div>
+
+            <div class="sms-compliance-text" style="font-size: 0.85rem; color: #6c757d; line-height: 1.4;">
+              <p style="margin-bottom: 0.5rem;"><strong>How it works:</strong></p>
+              <ul style="margin-bottom: 0.5rem; padding-left: 1rem;">
+                <li>You'll receive important updates about your trial class and course information</li>
+                <li>We may send occasional promotional messages about our educational programs</li>
+                <li>Standard message and data rates apply</li>
+              </ul>
+              <p style="margin: 0;"><strong>Opt-out:</strong> Reply STOP to any message to unsubscribe immediately. For help, reply HELP or contact us at tmstepsconsulting@gmail.com</p>
+            </div>
+          </div>
+
           <div class="text-center">
             <button type="button" id="trialButton" class="btn btn-primary btn-lg px-5 py-3" style="background: linear-gradient(135deg, #0d71d5 0%, #1e88e5 100%); 
                            border: none; 

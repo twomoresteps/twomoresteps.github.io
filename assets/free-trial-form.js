@@ -338,7 +338,16 @@ const initializeFreeTrialForm = () => {
         const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
         
         inputs.forEach(input => {
-            if (!input.value.trim()) {
+            if (input.type === 'checkbox') {
+                if (!input.checked) {
+                    input.classList.add('error');
+                    input.classList.remove('valid');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                    input.classList.add('valid');
+                }
+            } else if (!input.value.trim()) {
                 input.classList.add('error');
                 input.classList.remove('valid');
                 isValid = false;
@@ -385,15 +394,21 @@ const initializeFreeTrialForm = () => {
             referral: document.getElementById('referral').value,
             availability: document.getElementById('availability').value.trim(),
             salesUsername: document.getElementById('salesUsername').value.trim(),
-            otherReferral: document.getElementById('otherReferral').value.trim()
+            otherReferral: document.getElementById('otherReferral').value.trim(),
+            smsConsent: document.getElementById('smsConsent').checked
         };
 
         try {
             const result = await submitFormData(formData);
 
             if (result.success) {
-                // Show success page using existing HTML
-                const successMessage = form.dataset.successMessage;
+                // Show success page with SMS opt-in confirmation if applicable
+                let successMessage = form.dataset.successMessage;
+                
+                if (formData.smsConsent) {
+                    successMessage += `\n\nSMS Confirmation: You will receive a text message shortly asking you to reply YES to confirm SMS notifications. This helps us ensure we have the right number and that you want to receive our messages.`;
+                }
+                
                 showSuccessPage(successMessage);
             } else {
                 throw new Error(result.error);
