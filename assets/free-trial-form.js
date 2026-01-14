@@ -2,8 +2,95 @@
 // ==============================================
 
 // API endpoint configuration
-// const BASE_URL = 'http://localhost:3006/api';
+//const BASE_URL = 'http://localhost:3006/api';
 const BASE_URL = 'https://backend.2moresteps.com/api';
+
+// Phone verification state
+let isPhoneVerified = false;
+let verifiedPhoneNumber = null;
+
+// OTP API Functions
+// ==============================================
+
+// Send OTP code to phone number
+const sendOTP = async (phoneNumber) => {
+    try {
+        // Extract only digits from formatted phone number
+        const cleanPhone = phoneNumber.replace(/\D/g, '');
+
+        console.log('Sending OTP to:', cleanPhone);
+
+        const response = await fetch(`${BASE_URL}/Account/send-otp`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                phoneNumber: cleanPhone
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            console.log('OTP sent successfully');
+            return {
+                success: true,
+                message: data.message,
+                phone: data.phone,
+                formattedPhone: data.formattedPhone
+            };
+        } else {
+            console.error('Failed to send OTP:', data);
+            throw new Error(data.error?.message || 'Failed to send verification code');
+        }
+    } catch (error) {
+        console.error('OTP send error:', error);
+        throw error;
+    }
+};
+
+// Verify OTP code
+const verifyOTP = async (phoneNumber, code) => {
+    try {
+        // Extract only digits from formatted phone number
+        const cleanPhone = phoneNumber.replace(/\D/g, '');
+
+        console.log('Verifying OTP for:', cleanPhone);
+
+        const response = await fetch(`${BASE_URL}/Account/verify-otp`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                phoneNumber: cleanPhone,
+                code: code
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success && data.verified) {
+            console.log('OTP verified successfully');
+            return {
+                success: true,
+                verified: true,
+                message: data.message,
+                phone: data.phone,
+                formattedPhone: data.formattedPhone
+            };
+        } else {
+            console.error('Failed to verify OTP:', data);
+            throw new Error(data.error?.message || 'Invalid or expired verification code');
+        }
+    } catch (error) {
+        console.error('OTP verification error:', error);
+        throw error;
+    }
+};
 
 // Phone number formatting utilities
 const isNumericInput = (event) => {
@@ -114,17 +201,17 @@ const setupSuccessPageButtons = () => {
 // Display error messages
 const showMessage = (message, type = 'error') => {
     const messagesDiv = document.querySelector('.messages');
-    
+
     messagesDiv.innerHTML = `
-        <div class="alert alert-danger alert-dismissible text-center" role="alert" 
-             style="border: 2px solid #dc3545; 
-                    border-radius: 10px; 
-                    padding: 20px; 
-                    margin: 20px 0; 
-                    font-size: 1.1rem; 
+        <div class="alert alert-danger alert-dismissible text-center" role="alert"
+             style="border: 2px solid #dc3545;
+                    border-radius: 10px;
+                    padding: 20px;
+                    margin: 20px 0;
+                    font-size: 1.1rem;
                     box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);">
             ${message}
-            <button type="button" class="btn-close" aria-label="Close">&times;</button>
+            <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
     `;
 
@@ -303,6 +390,181 @@ const submitFormData = async (formData) => {
     }
 };
 
+// OTP UI Management Functions
+// ==============================================
+
+// Setup OTP verification event listeners
+const setupOTPVerification = () => {
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+    const phoneInput = document.getElementById('phoneNumber');
+    const otpInput = document.getElementById('otpCode');
+    const otpSection = document.getElementById('otpSection');
+    const phoneVerifiedBadge = document.getElementById('phoneVerifiedBadge');
+
+    if (!sendCodeBtn || !verifyCodeBtn || !phoneInput || !otpInput) {
+        console.error('OTP elements not found');
+        return;
+    }
+
+    // Handle Send Code button
+    sendCodeBtn.addEventListener('click', async () => {
+        const phoneNumber = phoneInput.value.trim();
+        const phonePattern = /^\(\d{3}\)\s\d{3}\s-\s\d{4}$/;
+
+        // Validate phone format
+        if (!phoneNumber || !phonePattern.test(phoneNumber)) {
+            phoneInput.classList.add('error');
+            phoneInput.classList.remove('valid');
+            const errorMsg = otpInput.dataset.errorSending || 'Please enter a valid phone number';
+            showOTPFeedback(errorMsg, 'error');
+            return;
+        }
+
+        // Clear previous verification if phone number changed
+        if (verifiedPhoneNumber && verifiedPhoneNumber !== phoneNumber) {
+            isPhoneVerified = false;
+            verifiedPhoneNumber = null;
+            phoneVerifiedBadge.style.display = 'none';
+        }
+
+        try {
+            // Update button state
+            sendCodeBtn.disabled = true;
+            sendCodeBtn.textContent = sendCodeBtn.dataset.textSending || 'Sending...';
+
+            // Send OTP
+            const result = await sendOTP(phoneNumber);
+
+            if (result.success) {
+                // Show OTP input section
+                otpSection.style.display = 'block';
+                phoneInput.disabled = true;
+
+                // Update button to show resend option
+                sendCodeBtn.textContent = sendCodeBtn.dataset.textResend || 'Resend Code';
+                sendCodeBtn.disabled = false;
+
+                // Show success feedback
+                const successMsg = otpInput.dataset.codeSent || 'Code sent! Check your phone.';
+                showOTPFeedback(successMsg, 'success');
+
+                // Focus on OTP input
+                otpInput.focus();
+            }
+        } catch (error) {
+            console.error('Failed to send OTP:', error);
+            const errorMsg = otpInput.dataset.errorSending || 'Failed to send code. Please try again.';
+            showOTPFeedback(error.message || errorMsg, 'error');
+            sendCodeBtn.disabled = false;
+            sendCodeBtn.textContent = sendCodeBtn.dataset.textSend || 'Send Code';
+        }
+    });
+
+    // Handle Verify Code button
+    verifyCodeBtn.addEventListener('click', async () => {
+        const phoneNumber = phoneInput.value.trim();
+        const code = otpInput.value.trim();
+
+        // Validate code format
+        if (!code || code.length !== 6 || !/^\d{6}$/.test(code)) {
+            otpInput.classList.add('error');
+            otpInput.classList.remove('valid');
+            showOTPFeedback('Please enter a 6-digit code', 'error');
+            return;
+        }
+
+        try {
+            // Update button state
+            verifyCodeBtn.disabled = true;
+            verifyCodeBtn.textContent = verifyCodeBtn.dataset.textVerifying || 'Verifying...';
+
+            // Verify OTP
+            const result = await verifyOTP(phoneNumber, code);
+
+            if (result.success && result.verified) {
+                // Update verification state
+                isPhoneVerified = true;
+                verifiedPhoneNumber = phoneNumber;
+
+                // Show verified badge
+                phoneVerifiedBadge.style.display = 'block';
+
+                // Hide OTP section
+                otpSection.style.display = 'none';
+
+                // Show success feedback
+                const successMsg = otpInput.dataset.verified || 'Phone verified successfully!';
+                showOTPFeedback(successMsg, 'success');
+
+                // Disable phone input and send code button
+                phoneInput.disabled = true;
+                sendCodeBtn.disabled = true;
+
+                // Clear OTP input
+                otpInput.value = '';
+
+                // Mark phone as valid
+                phoneInput.classList.remove('error');
+                phoneInput.classList.add('valid');
+            }
+        } catch (error) {
+            console.error('Failed to verify OTP:', error);
+            const errorMsg = otpInput.dataset.errorVerifying || 'Invalid or expired code. Please try again.';
+            showOTPFeedback(error.message || errorMsg, 'error');
+            otpInput.classList.add('error');
+            otpInput.classList.remove('valid');
+        } finally {
+            verifyCodeBtn.disabled = false;
+            verifyCodeBtn.textContent = verifyCodeBtn.dataset.textVerify || 'Verify';
+        }
+    });
+
+    // Allow Enter key to trigger verification
+    otpInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            verifyCodeBtn.click();
+        }
+    });
+
+    // Reset verification if phone number changes after verification
+    phoneInput.addEventListener('input', () => {
+        if (isPhoneVerified && phoneInput.value.trim() !== verifiedPhoneNumber) {
+            isPhoneVerified = false;
+            verifiedPhoneNumber = null;
+            phoneVerifiedBadge.style.display = 'none';
+            phoneInput.disabled = false;
+            sendCodeBtn.disabled = false;
+            sendCodeBtn.textContent = sendCodeBtn.dataset.textSend || 'Send Code';
+            otpSection.style.display = 'none';
+        }
+    });
+
+    // Only allow numeric input for OTP
+    otpInput.addEventListener('keypress', (e) => {
+        if (!/^\d$/.test(e.key) && e.key !== 'Enter' && e.key !== 'Backspace') {
+            e.preventDefault();
+        }
+    });
+};
+
+// Show OTP feedback message
+const showOTPFeedback = (message, type = 'error') => {
+    const otpFeedback = document.getElementById('otpFeedback');
+    if (!otpFeedback) return;
+
+    const colorClass = type === 'success' ? 'text-success' : 'text-danger';
+    otpFeedback.innerHTML = `<div class="${colorClass}" style="font-weight: 500;">${message}</div>`;
+
+    // Auto-hide success messages after 5 seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            otpFeedback.innerHTML = '';
+        }, 5000);
+    }
+};
+
 // Form initialization and event handlers
 const initializeFreeTrialForm = () => {
     console.log('Initializing free trial form...');
@@ -373,6 +635,16 @@ const initializeFreeTrialForm = () => {
             phoneInput.classList.add('error');
             phoneInput.classList.remove('valid');
             isValid = false;
+        }
+
+        // Phone verification check
+        if (!isPhoneVerified) {
+            spinner.style.display = 'none';
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+            const phoneNotVerifiedMessage = form.dataset.phoneNotVerifiedMessage || 'Please verify your phone number before submitting.';
+            showMessage(phoneNotVerifiedMessage, 'error');
+            return;
         }
 
         if (!isValid) {
@@ -504,6 +776,9 @@ const initializeFreeTrialForm = () => {
             this.classList.add('valid');
         }
     });
+
+    // Initialize OTP verification
+    setupOTPVerification();
 
     console.log('Form initialization completed');
 };

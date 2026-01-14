@@ -38,7 +38,8 @@ font: sans
           data-success-message="{{ site.data.free-trial[page.locale].freetrial.successMessage }}"
           data-error-message="{{ site.data.free-trial[page.locale].freetrial.errorMessage }}"
           data-validation-error-message="{{ site.data.free-trial[page.locale].freetrial.validationError }}"
-          data-submitting-text="{{ site.data.free-trial[page.locale].freetrial.submitting }}">
+          data-submitting-text="{{ site.data.free-trial[page.locale].freetrial.submitting }}"
+          data-phone-not-verified-message="{{ site.data.free-trial[page.locale].freetrial.errorPhoneNotVerified }}">
           <div class="messages"></div>
 
           <div class="form-floating mb-4">
@@ -77,15 +78,56 @@ font: sans
             </div>
           </div>
 
-          <div class="form-floating mb-4">
-            <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
-              placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
-            <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
-            <div class="valid-feedback">
+          <!-- Phone Number with OTP Verification -->
+          <div class="mb-4">
+            <div class="input-group">
+              <div class="form-floating" style="flex: 1;">
+                <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
+                  placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
+                <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
+              </div>
+              <button type="button" id="sendCodeBtn" class="btn btn-outline-primary"
+                style="border-top-left-radius: 0; border-bottom-left-radius: 0; min-width: 120px; white-space: nowrap;"
+                data-text-send="{{ site.data.free-trial[page.locale].freetrial.sendCodeBtn }}"
+                data-text-sending="{{ site.data.free-trial[page.locale].freetrial.sendingCode }}"
+                data-text-resend="{{ site.data.free-trial[page.locale].freetrial.resendCode }}">
+                {{ site.data.free-trial[page.locale].freetrial.sendCodeBtn }}
+              </button>
+            </div>
+            <div class="invalid-feedback d-block" id="phoneError" style="display: none !important;">
+              {{ site.data.free-trial[page.locale].freetrial.errorPhone }}
+            </div>
+            <div class="valid-feedback d-block" id="phoneSuccess" style="display: none !important;">
               {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
             </div>
-            <div class="invalid-feedback">
-              {{ site.data.free-trial[page.locale].freetrial.errorPhone }}
+
+            <!-- OTP Input Section (Initially Hidden) -->
+            <div id="otpSection" style="display: none; margin-top: 1rem;">
+              <div class="input-group">
+                <div class="form-floating" style="flex: 1;">
+                  <input id="otpCode" type="text" maxlength="6" class="form-control"
+                    placeholder="123456" pattern="[0-9]{6}"
+                    data-code-sent="{{ site.data.free-trial[page.locale].freetrial.codeSent }}"
+                    data-verified="{{ site.data.free-trial[page.locale].freetrial.phoneVerified }}"
+                    data-error-sending="{{ site.data.free-trial[page.locale].freetrial.errorSendingCode }}"
+                    data-error-verifying="{{ site.data.free-trial[page.locale].freetrial.errorVerifyingCode }}">
+                  <label for="otpCode">{{ site.data.free-trial[page.locale].freetrial.otpPlaceholder }}</label>
+                </div>
+                <button type="button" id="verifyCodeBtn" class="btn btn-success"
+                  style="border-top-left-radius: 0; border-bottom-left-radius: 0; min-width: 100px;"
+                  data-text-verify="{{ site.data.free-trial[page.locale].freetrial.verifyBtn }}"
+                  data-text-verifying="{{ site.data.free-trial[page.locale].freetrial.verifying }}">
+                  {{ site.data.free-trial[page.locale].freetrial.verifyBtn }}
+                </button>
+              </div>
+              <div id="otpFeedback" class="mt-2" style="font-size: 0.9rem;"></div>
+            </div>
+
+            <!-- Phone Verified Badge -->
+            <div id="phoneVerifiedBadge" style="display: none; margin-top: 0.5rem;">
+              <span class="badge bg-success" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+                {{ site.data.free-trial[page.locale].freetrial.phoneVerified }}
+              </span>
             </div>
           </div>
 
