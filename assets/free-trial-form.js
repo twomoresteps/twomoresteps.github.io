@@ -128,28 +128,14 @@ const formatToPhone = (event) => {
 
 // Campus location mapping
 const CAMPUS_MAPPING = {
-    'Irvine': 'Irvine',
-    'Diamond-bar': 'Diamond-bar',
-    'Arcadia': 'Arcadia',
-    'West-lafayette': 'West-lafayette',
-    'San-diego': 'San-diego',
-    'Redmond': 'Redmond',
-    'Bothell': 'Bothell',
-    'Factoria': 'Factoria',
+    'Irvine': 'In-Person',
     'Online': 'Online'
 };
 
 // Organization ID mapping
 const ORGANIZATION_MAPPING = {
-    'Redmond': '6684406b10707d0014fb7369',
-    'San-diego': '66bf6a0dcdae5300148e3a2c',
-    'Arcadia': '6390e0c5476933001554f8c7',
-    'Diamond-bar': '64c442a403253a0013048f3a',
-    'Bothell': '67e0298d64033c0015ce31bb',
-    'Factoria': '67ae3ed6b172e100156401d5',
-    'West-lafayette': '65663f2986db9b0013c43c9a',
-    'Irvine': '5b2423bbc0991500145353f4',
-    'Online': '5b2423bbc0991500145353f4'
+    'Irvine': '681ac956503902a636d056e3',  // In-Person
+    'Online': '681ac94c503902a636d056e2'   // Online
 };
 
 // Show success page by switching sections
@@ -337,6 +323,9 @@ const submitFormData = async (formData) => {
             referralName = `${formData.referral}: ${formData.otherReferral}`;
         }
 
+        // Get organization ID from campus selection
+        const organizationId = ORGANIZATION_MAPPING[formData.campus] || ORGANIZATION_MAPPING['Online'];
+
         const accountData = {
             email2: formData.email,
             phone2: formData.phone,
@@ -347,7 +336,8 @@ const submitFormData = async (formData) => {
             dateOfBirth: new Date().toISOString(),
             grade: formData.grade,
             referralName: referralName,
-            preferedLanguage: 'English'
+            preferedLanguage: 'English',
+            organizationId: organizationId
         };
 
         const accountResult = await createAccount(accountData);
@@ -361,7 +351,6 @@ const submitFormData = async (formData) => {
 
         // Step 2: Create Trial Class
         const campusLocation = CAMPUS_MAPPING[formData.campus] || formData.campus;
-        const organizationId = ORGANIZATION_MAPPING[formData.campus] || ORGANIZATION_MAPPING['Irvine'];
 
         const trialData = {
             availability: formData.availability,
