@@ -60,3 +60,4 @@ freetrial:
   errorVerifyingCode: "Invalid or expired code. Please try again."
   errorPhoneNotVerified: "Please verify your phone number before submitting."
   resendCode: "Resend Code"
+  phoneVerificationRequired: "Phone verification is required to submit"

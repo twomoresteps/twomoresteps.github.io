@@ -60,3 +60,4 @@ freetrial:
   errorVerifyingCode: "验证码无效或已过期，请重试。"
   errorPhoneNotVerified: "请在提交前验证您的手机号码。"
   resendCode: "重新发送"
+  phoneVerificationRequired: "提交前需要验证手机号码"
