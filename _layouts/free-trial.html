@@ -45,7 +45,7 @@ font: sans
           <div class="form-floating mb-4">
             <input id="studentName" type="text" name="studentName" class="form-control" placeholder="Jane"
               required="required" data-error="Name is required.">
-            <label for="studentName">{{ site.data.free-trial[page.locale].freetrial.nameTag }}</label>
+            <label for="studentName">{{ site.data.free-trial[page.locale].freetrial.nameTag }} <span style="color: red;">*</span></label>
             <div class="valid-feedback">
               {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
             </div>
@@ -57,7 +57,7 @@ font: sans
           <div class="form-floating mb-4">
             <input id="studentGrade" type="text" name="studentGrade" class="form-control" placeholder="Ex: 5th Grade"
               required="required" data-error="Valid grade level is required.">
-            <label for="studentGrade">{{ site.data.free-trial[page.locale].freetrial.gradeTag }}</label>
+            <label for="studentGrade">{{ site.data.free-trial[page.locale].freetrial.gradeTag }} <span style="color: red;">*</span></label>
             <div class="valid-feedback">
               {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
             </div>
@@ -68,8 +68,8 @@ font: sans
 
           <div class="form-floating mb-4">
             <input id="emailAddress" type="email" name="emailAddress" class="form-control"
-              placeholder="jane.doe@example.com" required="required" data-error="Valid email is required.">
-            <label for="emailAddress">{{ site.data.free-trial[page.locale].freetrial.parentEmailTag }}</label>
+              placeholder="jane.doe@example.com" data-error="Valid email is required.">
+            <label for="emailAddress">{{ site.data.free-trial[page.locale].freetrial.parentEmailTag }} (Optional)</label>
             <div class="valid-feedback">
               {{ site.data.free-trial[page.locale].freetrial.successIndicator }}
             </div>
@@ -84,7 +84,7 @@ font: sans
               <div class="form-floating" style="flex: 1;">
                 <input id="phoneNumber" type="tel" maxlength="16" name="phoneNumber" class="form-control"
                   placeholder="(123)-456-7890" required="required" data-error="Valid phone number is required.">
-                <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }}</label>
+                <label for="phoneNumber">{{ site.data.free-trial[page.locale].freetrial.phoneNumberTag }} <span style="color: red;">*</span></label>
               </div>
               <button type="button" id="sendCodeBtn" class="btn btn-outline-primary"
                 style="border-top-left-radius: 0; border-bottom-left-radius: 0; min-width: 120px; white-space: nowrap;"
@@ -136,16 +136,12 @@ font: sans
             </div>
           </div>
 
-          <div class="form-select-wrapper mb-4">
-            <select class="form-select" aria-label="Default select example" required="required" id="campus" name="campus">
-              <option value="">{{ site.data.free-trial[page.locale].freetrial.campusTag }}</option>
-              <option id="Irvine" value="Irvine">{{ site.data.free-trial[page.locale].freetrial.campus1 }}</option>
-              <option id="Online" value="Online">{{ site.data.free-trial[page.locale].freetrial.campus5 }}</option>
-            </select>
-          </div>
+          <!-- Campus field hidden - always use Online -->
+          <input type="hidden" id="campus" name="campus" value="Online">
 
-          <div class="form-select-wrapper mb-4">
-            <select class="form-select" aria-label="Default select example" required="required" id="referral"
+          <!-- Referral field hidden -->
+          <div class="form-select-wrapper mb-4" style="display: none;">
+            <select class="form-select" aria-label="Default select example" id="referral"
               name="referral">
               <option value="">{{ site.data.free-trial[page.locale].freetrial.sourceTag }}</option>
               <option id="xiaohongshu" value="xiaohongshu">{{ site.data.free-trial[page.locale].freetrial.source1 }}
@@ -177,9 +173,8 @@ font: sans
 
           <div class="form-floating mb-4">
             <textarea id="availability" name="availability" class="form-control"
-              placeholder="{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}" style="height: 150px;"
-              required></textarea>
-            <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}</label>
+              placeholder="{{ site.data.free-trial[page.locale].freetrial.trialAvailability }}" style="height: 150px;"></textarea>
+            <label for="availability">{{ site.data.free-trial[page.locale].freetrial.trialAvailability }} (Optional)</label>
           </div>
 
           <!-- SMS Opt-in Section -->
@@ -189,7 +184,7 @@ font: sans
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="smsConsent" name="smsConsent" required style="margin-top: 0.1rem;">
               <label class="form-check-label" for="smsConsent" style="font-size: 0.95rem; line-height: 1.4; color: #495057;">
-                <strong>I consent to receive recurring SMS messages from Two More Steps. Message frequency may vary. Message & data rates may apply. Reply STOP to cancel, HELP for help.</strong>
+                <strong><span style="color: red;">*</span> I consent to receive recurring SMS messages from Two More Steps. Message frequency may vary. Message & data rates may apply. Reply STOP to cancel, HELP for help.</strong>
               </label>
               <div class="invalid-feedback">
                 You must consent to receive SMS messages to proceed.

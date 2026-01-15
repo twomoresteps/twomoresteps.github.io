@@ -315,16 +315,16 @@ const submitFormData = async (formData) => {
         const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ').trim() : '';
         const username = formData.studentName.replace(/\s+/g, '').toLowerCase() + Math.floor(Math.random() * (999 - 100 + 1) + 100);
 
-        // Handle referral details
-        let referralName = formData.referral;
-        if (formData.referral === 'Sales' && formData.salesUsername) {
-            referralName = `${formData.referral}: ${formData.salesUsername}`;
-        } else if (formData.referral === 'Others' && formData.otherReferral) {
-            referralName = `${formData.referral}: ${formData.otherReferral}`;
-        }
+        // Handle referral details (commented out - not sent to backend)
+        // let referralName = formData.referral;
+        // if (formData.referral === 'Sales' && formData.salesUsername) {
+        //     referralName = `${formData.referral}: ${formData.salesUsername}`;
+        // } else if (formData.referral === 'Others' && formData.otherReferral) {
+        //     referralName = `${formData.referral}: ${formData.otherReferral}`;
+        // }
 
-        // Get organization ID from campus selection
-        const organizationId = ORGANIZATION_MAPPING[formData.campus] || ORGANIZATION_MAPPING['Online'];
+        // Always use Online organization ID
+        const organizationId = '681ac94c503902a636d056e2';
 
         const accountData = {
             email2: formData.email,
@@ -335,7 +335,7 @@ const submitFormData = async (formData) => {
             password: '123',
             dateOfBirth: new Date().toISOString(),
             grade: formData.grade,
-            referralName: referralName,
+            // referralName: referralName,  // Commented out - not sent to backend
             preferedLanguage: 'English',
             organizationId: organizationId
         };
