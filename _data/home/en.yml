@@ -1,8 +1,73 @@
 home:
+  # Hero Section
+  heroTagline: "Students First, Teachers Best"
+  heroTitle: "The Premier Choice for K12 Math Training & Competition Prep in the US and Overseas"
+  heroCta: "Get Free Trial"
+  heroCtaLink: "/free-trial"
+
+  # About Section
   aboutUs: About Us
   aboutDesc: We are committed to meeting the diverse learning and consulting needs of users, empowering students to grow with confidence, and helping users achieve dreams such as further education, immigration, and employment, becoming highly respected individuals.
+
+  # Course Cards
   step: STEP Chinese
   stepDesc: Explore STEP Chinese courses suitable for children aged 3-18, integrating flexible schedules, personalized teaching, and immersive learning, led by a top Chinese language team with ten years of experience. Choose STEP for easy Chinese learning, with 1-on-1 or group lessons, and let competence speak for itself.
   saxon: Saxon Mathematics
   saxonDesc: Explore SAXON mathematical thinking courses suitable for children aged 4-12 with English as their first language. Using the spiral progressive teaching method, setting stage-specific goals, providing personalized teaching, teacher-led learning tracking, regular testing, and parent meetings, committed to sparking interest in learning and strengthening mathematical thinking. SAXON, carefully selected good teachers, speaks with learning effectiveness.
   learnMore: Learn More
+
+  # 5 Reasons Section
+  reasonsTitle: "5 Reasons to Choose TMSA"
+  reasons:
+    - title: "Professional Focus"
+      desc: "Specializing in U.S. and overseas math tutoring and competition training (such as Kangaroo Math, AMC, etc.), with deep understanding of local academics and exams."
+      icon: "bi-bullseye"
+    - title: "Systematic Curriculum"
+      desc: "Designed around SAXON curriculum standards and competition frameworks, emphasizing knowledge depth and systematic training while maintaining engagement and interactivity."
+      icon: "bi-journal-bookmark"
+    - title: "Top-Tier Faculty"
+      desc: "Teacher selection pass rate is only 1%, with English instruction. Most have teaching/education backgrounds and competition experience, with hiring standards exceeding U.S. private schools."
+      icon: "bi-mortarboard"
+    - title: "Full-Service Support"
+      desc: "Providing pre-class preparation, in-class instruction, post-class Q&A, and homework review - comprehensive support to ensure learning outcomes."
+      icon: "bi-clipboard-check"
+    - title: "Homeroom Supervision"
+      desc: "Implementing a 7-step concierge service including study supervision, homework tracking, test scheduling, and parent meeting organization with full follow-up support."
+      icon: "bi-person-check"
+
+  # Teachers Section
+  teachersTitle: "We Focus on Online Elite Small Classes"
+  teachersDesc: "Our teaching team members all have excellent educational backgrounds, with the vast majority coming from top global universities. They excel in mathematics teaching - this is all due to rigorous selection (only 1% teacher pass rate), evaluation, and continuous training from the very beginning of team formation."
+  meetTeachers: "Meet Our Teachers"
+
+teachers:
+  - name: "Carmen"
+    image: "/assets/images/teachers/Carmen.jpeg"
+    bio: |
+      • Graduated from Cornell University (Ivy League, QS ranks 16).
+      • STEM background with interdisciplinary skills; fluent in authentic American English; deep knowledge of U.S. education system.
+      • Expert in U.S. public/private school curricula, teaching styles, and admission processes.
+  - name: "Oliver"
+    image: "/assets/images/teachers/Oliver.jpeg"
+    bio: |
+      • Graduated from UCLA (Top public university in the U.S.).
+      • Solid academic foundation in advanced math theories & practical skills.
+      • Over two years of math teaching experience with students aged 6-12.
+  - name: "Tricia"
+    image: "/assets/images/teachers/Tricia.jpeg"
+    bio: |
+      • Graduated from Boston University (USA) with strong academic & professional skills.
+      • Long-term U.S. study/life experience.
+      • In-depth understanding of American education, math thinking curricula & classroom structures.
+  - name: "Vivi"
+    image: "/assets/images/teachers/Vivi.jpeg"
+    bio: |
+      • M.Ed. from University of Pennsylvania (Top university in the US) - global teaching perspective.
+      • Solid educational theory & academic research capabilities.
+      • 3 years of curriculum design and teaching experience for children aged 5-12.
+  - name: "Sandy"
+    image: "/assets/images/teachers/Sandy.jpeg"
+    bio: |
+      • Bachelor of Science (B.S.) from the University of California, Davis.
+      • Master of Science (M.S.) from California Polytechnic State University.
+      • 5 years of teaching experience for students from G2-5.

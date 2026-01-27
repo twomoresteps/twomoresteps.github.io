@@ -1,8 +1,70 @@
 home:
+  # Hero Section
+  heroTagline: "Students First, Teachers Best"
+  heroTitle: "K12阶段美国及海外数学培训与竞赛培训首选"
+  heroCta: "领取试听"
+  heroCtaLink: "/cn/free-trial"
+
+  # About Section
   aboutUs: 关于我们
   aboutDesc: 我们致力于满足用户多元学习和咨询需求，助力学员自信成长，帮助用户实现升学、移民、求职等梦想，成为备受尊敬的人。
+
+  # Course Cards
   step: STEP中文
   stepDesc: 探索适合3-18岁孩子的STEP中文课程，融合灵活时间、个性教学和沉浸式学习，由十年经验的顶级语文团队领导。选择STEP，轻松学中文，1对1或小组授课，让实力代言。
   saxon: Saxon青少年数学思维
   saxonDesc: 探索适合4-12岁以英语为第一语言的孩子的SAXON数学思维课程。采用螺旋渐进教学法，设立阶段性目标，提供个性化教学，班主任跟踪学习，以及定期测试和家长会，致力于激发学习兴趣和强化数学思维。SAXON，严选好老师，用学习效果说话。
   learnMore: 了解更多
+
+  # 5 Reasons Section
+  reasonsTitle: "选择TMSA的五大理由"
+  reasons:
+    - title: "专业定位"
+      desc: "专注于美国及海外数学培优与竞赛培训(如袋鼠数学、AMC等)，深谙本地学情与考情。"
+      icon: "bi-bullseye"
+    - title: "体系化课程"
+      desc: "结合SAXON课程标准与竞赛体系设计，注重知识深度与系统性训练，兼顾趣味性与互动性。"
+      icon: "bi-journal-bookmark"
+    - title: "顶尖师资"
+      desc: "教师选拔通过率低达1%，全英文授课，多数具备教学/教育背景及竞赛经验，聘用标准高于美国私校。"
+      icon: "bi-mortarboard"
+    - title: "全流程服务"
+      desc: "提供课前备课、课中讲解、课后答疑与作业批改等全环节服务，保障学习效果。"
+      icon: "bi-clipboard-check"
+    - title: "班主任督导"
+      desc: "实行七步管家式服务，包括学习监督、作业督促、测试安排及家长会组织等全程跟踪支持。"
+      icon: "bi-person-check"
+
+  # Teachers Section
+  teachersTitle: "我们专注于在线精英小班课"
+  teachersDesc: "我们的教师团队均拥有优秀的教育背景，绝大多数来自全球顶尖大学。他们在数学教学方面专业突出，这都是在团队组建之初就经过严格选拔(教师通过率仅有1%)、评估和不断加强培训的"
+  meetTeachers: "认识我们的老师"
+
+teachers:
+  - name: "Carmen"
+    image: "/assets/images/teachers/Carmen.jpeg"
+    bio: |
+      • 毕业于美国康奈尔大学，常春藤盟校，QS排名16。
+      • 拥有理工科背景与跨学科分析能力，纯正美式口语，熟悉美国教育体系。
+      • 熟悉美国公立与私立学校课程体系、教学风格及入学申请流程。
+  - name: "Oliver"
+    image: "/assets/images/teachers/Oliver.jpeg"
+    bio: |
+      • 毕业于美国加州大学洛杉矶分校（UCLA）全美最佳公立大学排名第2位。
+      • 应用数学学士，学术背景扎实，掌握深厚的数学理论基础和实际应用技能。
+  - name: "Tricia"
+    image: "/assets/images/teachers/Tricia.jpeg"
+    bio: |
+      • 美国波士顿大学毕业，拥有扎实的学术背景和专业能力。
+      • 长期在美国学习与生活，对美式教育体系、数学思维课程以及课堂结构有深入理解。
+  - name: "Vivi"
+    image: "/assets/images/teachers/Vivi.jpeg"
+    bio: |
+      • 宾夕法尼亚大学教育学硕士（全美排名第8名），具备国际化教学视野。
+      • 加州大学尔湾分校教育学士，拥有扎实的教育理论与学术研究能力。
+  - name: "Sandy"
+    image: "/assets/images/teachers/Sandy.jpeg"
+    bio: |
+      • 美国加州大学戴维斯分校（UC Davis），理学学士学位。
+      • 加州科技大学，理学硕士学位。
+      • 获TESOL 国际教师证书

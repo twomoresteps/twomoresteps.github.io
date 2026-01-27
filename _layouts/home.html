@@ -3,83 +3,211 @@ layout: default
 ---
 
 <main>
-  <div class="container py-2">
-
-    <!-- <div class="h-100 bg-light border rounded-3 d-flex flex-column mb-4">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="/assets/images/promotional/promotional1.jpg" class="d-block w-100 rounded-3" alt="promotional1">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/images/promotional/promotional2.jpg" class="d-block w-100 rounded-3" alt="promotional2">
-          </div>
-          <div class="carousel-item">
-            <img src="/assets/images/promotional/promotional3.jpg" class="d-block w-100 rounded-3" alt="promotional3">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-    </div> -->
-
-    <!-- Unified Content Section with all three elements -->
-    <div class="row align-items-md-stretch mb-4">
-      <!-- About Us Section -->
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-light rounded-3 d-flex flex-column">
-          <h2 class="fw-bold">{{ site.data.home[page.locale].home.aboutUs }}</h2>
-          <img class="img-fluid mb-3" src="/assets/images/school-flatline.png" alt="learning" />
-          <div class="mt-auto">
-            <p>{{ site.data.home[page.locale].home.aboutDesc }}</p>
-            <a href="/about-us" class="btn btn-primary" type="button">{{ site.data.home[page.locale].home.learnMore
-              }}</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step Section -->
-      <div class="col-md-4">
-        <div class="h-100 p-4 text-white bg-dark rounded-3 d-flex flex-column">
-          <h2>{{ site.data.home[page.locale].home.step }}</h2>
-          <img class="img-fluid mb-3" src="/assets/images/online-lesson-flatline.png" alt="learning" />
-          <div class="mt-auto">
-            <p>{{ site.data.home[page.locale].home.stepDesc }}</p>
-            <a href="/step" class="btn btn-outline-light" type="button">{{ site.data.home[page.locale].home.learnMore
-              }}</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Saxon Section -->
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-light border rounded-3 d-flex flex-column">
-          <h2>{{ site.data.home[page.locale].home.saxon }}</h2>
-          <img class="img-fluid mb-3" src="/assets/images/teacher-flatline.png" alt="learning" />
-          <div class="mt-auto">
-            <p>{{ site.data.home[page.locale].home.saxonDesc }}</p>
-            <a href="/saxon" class="btn btn-outline-secondary" type="button">{{
-              site.data.home[page.locale].home.learnMore }}</a>
+  <!-- Hero Section -->
+  <section class="hero-section position-relative">
+    <img src="/assets/images/home/hero-bg.png" alt="Hero" class="hero-bg-img w-100">
+    <div class="hero-content position-absolute top-0 start-0 h-100 d-flex align-items-center">
+      <div class="hero-text text-white px-4 px-lg-5">
+        <p class="lead mb-2 fw-light text-center">{{ site.data.home[page.locale].home.heroTagline }}</p>
+        <h1 class="fw-bold mb-4 text-center">{{ site.data.home[page.locale].home.heroTitle }}</h1>
+        <div class="text-center">
+          <div class="hero-cta-wrapper d-inline-block position-relative">
+            <a href="{{ site.data.home[page.locale].home.heroCtaLink }}" class="hero-cta-btn">
+              <span class="hero-cta-fire">🔥</span>
+              <span class="hero-cta-text">{{ site.data.home[page.locale].home.heroCta }}</span>
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="hero-cta-cursor" viewBox="0 0 16 16">
+              <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .557.103z" fill="white" stroke="#1a3a6e" stroke-width="0.8"/>
+            </svg>
           </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <div class="container py-5">
+    <!-- 5 Reasons Section -->
+    <section class="reasons-section mb-5">
+      <img src="/assets/images/home/reasons.jpg" alt="{{ site.data.home[page.locale].home.reasonsTitle }}" class="img-fluid rounded-3 shadow-sm w-100">
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="teachers-section mb-5">
+      <img src="/assets/images/home/teachers-hero.jpg" alt="{{ site.data.home[page.locale].home.teachersTitle }}" class="img-fluid rounded-3 shadow-sm w-100 mb-5">
+
+      <div class="row g-4 justify-content-center">
+        {% for teacher in site.data.home[page.locale].teachers %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <img src="{{ teacher.image }}" alt="{{ teacher.name }}" class="rounded-circle me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                <h5 class="card-title fw-bold mb-0">{{ teacher.name }}</h5>
+              </div>
+              <div class="teacher-bio small text-muted">
+                {{ teacher.bio | newline_to_br }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Course Cards Section -->
+    <section class="courses-section mb-4">
+      <div class="row align-items-md-stretch">
+        <!-- About Us Section -->
+        <div class="col-md-4 mb-4">
+          <div class="h-100 p-4 bg-light rounded-3 d-flex flex-column">
+            <h2 class="fw-bold">{{ site.data.home[page.locale].home.aboutUs }}</h2>
+            <img class="img-fluid mb-3" src="/assets/images/school-flatline.png" alt="learning" />
+            <div class="mt-auto">
+              <p>{{ site.data.home[page.locale].home.aboutDesc }}</p>
+              <a href="/about-us" class="btn btn-primary" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step Section -->
+        <div class="col-md-4 mb-4">
+          <div class="h-100 p-4 text-white bg-dark rounded-3 d-flex flex-column">
+            <h2>{{ site.data.home[page.locale].home.step }}</h2>
+            <img class="img-fluid mb-3" src="/assets/images/online-lesson-flatline.png" alt="learning" />
+            <div class="mt-auto">
+              <p>{{ site.data.home[page.locale].home.stepDesc }}</p>
+              <a href="/step" class="btn btn-outline-light" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Saxon Section -->
+        <div class="col-md-4 mb-4">
+          <div class="h-100 p-4 bg-light border rounded-3 d-flex flex-column">
+            <h2>{{ site.data.home[page.locale].home.saxon }}</h2>
+            <img class="img-fluid mb-3" src="/assets/images/teacher-flatline.png" alt="learning" />
+            <div class="mt-auto">
+              <p>{{ site.data.home[page.locale].home.saxonDesc }}</p>
+              <a href="/saxon" class="btn btn-outline-secondary" type="button">{{ site.data.home[page.locale].home.learnMore }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </main>
+
+<style>
+.hero-section {
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  display: block;
+  height: auto;
+}
+
+.hero-content {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  padding-left: 5%;
+}
+
+.hero-text {
+  width: 90%;
+}
+
+.hero-text .lead {
+  font-size: 1.25rem !important;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+}
+
+.hero-cta-wrapper {
+  margin-top: 0.5rem;
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  color: #1a3a6e;
+  padding: 12px 28px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+}
+
+.hero-cta-btn:hover {
+  color: #1a3a6e;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+  transform: translate(3px, 3px);
+}
+
+.hero-cta-fire {
+  font-size: 1.75rem;
+  margin-right: 8px;
+}
+
+.hero-cta-text {
+  letter-spacing: 2px;
+}
+
+.hero-cta-cursor {
+  position: absolute;
+  bottom: -12px;
+  right: -20px;
+  transform: scaleX(-1);
+  filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.3));
+}
+
+.teacher-bio {
+  line-height: 1.6;
+}
+
+.teachers-section .card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 991px) {
+  .hero-content {
+    width: 50%;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text .lead {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    background-color: #1565c0;
+  }
+
+  .hero-bg-img {
+    display: none;
+  }
+
+  .hero-content {
+    position: relative !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 0;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+</style>
